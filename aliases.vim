@@ -26,3 +26,5 @@ vnoremap = =gv
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+nmap <leader>c :noh<CR>
