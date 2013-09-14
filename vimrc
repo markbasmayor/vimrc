@@ -20,9 +20,10 @@ set autoread
 set viminfo='10,\"100,:20,%,n~/.viminfo
 autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
+autocmd filetype * let @/ = ""          " prevent previous search results from being highlighted
+
 " use w!! to write protected files
 cmap w!! %!sudo tee > /dev/null % 
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Resources
