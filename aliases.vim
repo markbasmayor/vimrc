@@ -8,6 +8,7 @@ let g:mapleader=";"
 " quick alias to leave vim
 nmap <leader>w :w<CR> 
 nmap <leader>q :q!<CR>
+nmap <leader>wq :wq<CR>
 
 "replace the current word in all opened buffers
 map <leader>r :call Replace()<CR>

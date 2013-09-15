@@ -166,10 +166,13 @@ autocmd BufWrite *.php :call DeleteTrailingWS()
 
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " --- HTML
 autocmd FileType html,xhtml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html set omnifunc=xmlcomplete#CompleteTags
 
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings
@@ -179,3 +182,7 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 " Close vim if the only window left open is the NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" --- ragtag
+set timeout timeoutlen=5000 
+
