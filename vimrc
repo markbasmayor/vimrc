@@ -142,6 +142,7 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " Synax related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on   
+set nu
 set wildmenu
 let loaded_matchparen = 1       " disable matching paren highlighting
 
