@@ -29,3 +29,6 @@ vnoremap = =gv
 map 0 ^
 
 nmap <leader>c :noh<CR>
+
+nnoremap <silent> <F4> :set number!<CR>
+
