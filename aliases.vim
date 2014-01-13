@@ -32,3 +32,4 @@ nmap <leader>c :noh<CR>
 
 nnoremap <silent> <F4> :set number!<CR>
 
+map <F5> :make <CR>
