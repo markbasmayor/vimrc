@@ -31,4 +31,6 @@ map 0 ^
 nmap <leader>c :noh<CR>
 
 nnoremap <silent> <F4> :set number!<CR>
+map <F5> :make <CR>
+nnoremap <silent><F6> :set paste!<BAR>set paste?<CR>
 
