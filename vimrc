@@ -170,7 +170,7 @@ autocmd BufWrite *.php :call DeleteTrailingWS()
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-:autocmd FileType php map <F5> :w!<CR>:!/usr/bin/php %<CR>
+:autocmd FileType php map <F5> :w!<CR>:!clear<CR>:!/usr/bin/php %<CR>
 
 " --- HTML
 autocmd FileType html,xhtml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
