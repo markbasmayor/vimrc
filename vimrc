@@ -190,7 +190,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " --- ragtag
 set timeout timeoutlen=5000 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- SnipMate
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['php'] = 'php,mark'
+let g:snipMate.scope_aliases['php'] = 'php,myphp'
+
 
