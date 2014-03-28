@@ -126,8 +126,8 @@ set noswapfile
 " set laststatus=2
 
 " Format the status line
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-"set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
 
 
 
@@ -175,7 +175,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " --- HTML
 autocmd FileType html,xhtml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html set omnifunc=xmlcomplete#CompleteTags
-
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,4 +210,11 @@ set laststatus=2
 set t_Co=256
 
 
-
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmp = '<CtrlPMixed>'
+let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_regexp = 1
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 'tjr'
