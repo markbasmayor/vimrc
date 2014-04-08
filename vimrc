@@ -218,3 +218,9 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NerdTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let NERDTreeQuitOnOpen = 1 
