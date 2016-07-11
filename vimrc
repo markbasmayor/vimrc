@@ -212,14 +212,27 @@ set t_Co=256
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmp = '<CtrlPMixed>'
-let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_regexp = 1
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_open_new_file = 't'
-let g:ctrlp_open_multiple_files = 'tjr'
+let g:ctrlp_working_path_mode = 'c' " 'c' - the directory of the current file.
+" Persist the cache between ViM sessions.
+let g:ctrlp_clear_cache_on_exit = 0
+" Specify the cache directory.
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|bower_components$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_user_command = ['find %s -type f']
 
+" let g:ctrlp_user_command = {
+"     \ 'types': {
+"         \ 1: ['.git', 'cd %s && git ls-files'],
+"         \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+"         \ },
+"     \ 'fallback': 'find %s -type f'
+"     \ }
+" 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
