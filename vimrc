@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bootstrap
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
+source ~/.vim/plugins.vim
 source ~/.vim/helper.vim
 source ~/.vim/aliases.vim
 
@@ -120,18 +120,6 @@ set noswapfile
 
 
 """"""""""""""""""""""""""""""
-" Status line
-""""""""""""""""""""""""""""""
-" Always show the status line
-" set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
-
-
-
-""""""""""""""""""""""""""""""
 " Search related
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
@@ -147,6 +135,7 @@ syntax on
 set nu
 set wildmenu
 let loaded_matchparen = 1       " disable matching paren highlighting
+
 
 " Enable filetype plugins
 filetype plugin on
@@ -185,31 +174,41 @@ nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
 " Close vim if the only window left open is the NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeQuitOnOpen = 1 
 
-" --- ragtag
+" --- NERDCommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" --- Ragtag
 set timeout timeoutlen=5000 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- SnipMate
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['php'] = 'php,myphp'
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" powerline 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-
+" --- Lightline 
 " Always show statusline
 set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
 
+" --- RagTag 
+let g:ragtag_global_maps = 1
+
+" --- Ctrl P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmp = '<CtrlPMixed>'
 let g:ctrlp_working_path_mode = 'c' " 'c' - the directory of the current file.
@@ -225,15 +224,3 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_user_command = ['find %s -type f']
 
-" let g:ctrlp_user_command = {
-"     \ 'types': {
-"         \ 1: ['.git', 'cd %s && git ls-files'],
-"         \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-"         \ },
-"     \ 'fallback': 'find %s -type f'
-"     \ }
-" 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeQuitOnOpen = 1 
