@@ -1,14 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bootstrap
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source ~/.vim/plugins.vim
+source ~/.vim/plugin_settings.vim
 source ~/.vim/helper.vim
 source ~/.vim/aliases.vim
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                "turn off backwards compatibility
+"------------------------------------------------------------------------------
+
+"turn off backwards compatibility
+set nocompatible
 set backspace=indent,eol,start
 set encoding=utf8
 set ffs=unix,dos,mac
@@ -23,28 +23,45 @@ autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '
 autocmd filetype * let @/ = ""          " prevent previous search results from being highlighted
 
 " use w!! to write protected files
-cmap w!! %!sudo tee > /dev/null % 
+cmap w!! %!sudo tee > /dev/null %
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" remove trailing spaces on save
+autocmd BufWrite * :call DeleteTrailingWS()
+
+" Always show at least 3 lines above/below the cursor
+set scrolloff=3
+
+" Similarly, show at least 5 characters when scrolling horizontally
+set sidescrolloff=5
+
+" Show trailing spaces so it's easier to delete them
+set listchars=tab:▸\ ,trail:·
+set list
+
+"------------------------------------------------------------------------------
 " Resources
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=1000                " How many lines of history to remember.
+"------------------------------------------------------------------------------
+
+" How many lines of history to remember.
+set history=1000
+
 " Use all the memory needed, for maximum performance.
 set maxmemtot=2000000
 set maxmem=2000000
 set maxmempattern=2000000
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
+
 " Turn on the WiLd menu
 set wildmenu
 
 " Ignore compiled files
-set wildignore+=.svn,CVS,.git 
+set wildignore+=.svn,CVS,.git
 set wildignore+=*.o,*.a,*.class,*.mo,*.la,*.so,*.lo,*.la,*.obj,*.pyc
 set wildignore+=*.exe,*.zip,*.jpg,*.png,*.gif,*.jpeg
+set wildmode=longest,list,full
 
 "Always show current position
 set ruler
@@ -62,7 +79,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -83,18 +100,18 @@ set novisualbell
 set t_vb=
 set tm=500
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
+
 set t_Co=256
 set background=dark
 colorscheme jellybeans
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -109,49 +126,46 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
+
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
 set noswapfile
 
+"------------------------------------------------------------------------------
+" Search
+"------------------------------------------------------------------------------
 
-""""""""""""""""""""""""""""""
-" Search related
-""""""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
+"------------------------------------------------------------------------------
+" Synax highlighting
+"------------------------------------------------------------------------------
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Synax related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on   
-set nu
-set wildmenu
-let loaded_matchparen = 1       " disable matching paren highlighting
+syntax on
+set number
 
+" disable matching paren highlighting
+let loaded_matchparen = 1
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 " LANGUAGE specific
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"------------------------------------------------------------------------------
 
 " --- PHP
-" Delete trailing white space on save
-autocmd BufWrite *.php :call DeleteTrailingWS()
 
 " highlights interpolated variables in sql strings and does sql-syntax highlighting. yay
-" autocmd FileType php let php_sql_query=1
+autocmd FileType php let php_sql_query=1
 
 " does exactly that. highlights html inside of php strings
 " autocmd FileType php let php_htmlInStrings=1
@@ -159,68 +173,13 @@ autocmd BufWrite *.php :call DeleteTrailingWS()
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-:autocmd FileType php map <F5> :w!<CR>:!clear<CR>:!/usr/bin/php %<CR>
+autocmd FileType php map <F5> :w!<CR>:!clear<CR>:!/usr/bin/php %<CR>
 
 " --- HTML
 autocmd FileType html,xhtml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- NERDTree
-nnoremap <silent> <F3> :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
-" Close vim if the only window left open is the NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeQuitOnOpen = 1 
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
-" --- NERDCommenter
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" --- Ragtag
-set timeout timeoutlen=5000 
-
-" --- SnipMate
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['php'] = 'php,myphp'
-
-" --- Lightline 
-" Always show statusline
-set laststatus=2
-
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat'
-      \ }
-
-" --- RagTag 
-let g:ragtag_global_maps = 1
-
-" --- Ctrl P
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmp = '<CtrlPMixed>'
-let g:ctrlp_working_path_mode = 'c' " 'c' - the directory of the current file.
-" Persist the cache between ViM sessions.
-let g:ctrlp_clear_cache_on_exit = 0
-" Specify the cache directory.
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)|bower_components$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_user_command = ['find %s -type f']
 

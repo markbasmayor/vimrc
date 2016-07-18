@@ -1,12 +1,14 @@
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
-"--------------------------------------------------------------------------- 
+"---------------------------------------------------------------------------
 " set leader to ;
-let mapleader=";"
-let g:mapleader=";"
+let mapleader=","
+let g:mapleader=","
+
+nnoremap ; :
 
 " quick alias to leave vim
-nmap <leader>w :w<CR> 
+nmap <leader>w :w<CR>
 nmap <leader>q :q!<CR>
 nmap <leader>wq :wq<CR>
 
@@ -34,3 +36,8 @@ nnoremap <silent> <F4> :set number!<CR>
 nnoremap <silent><F6> :set paste!<BAR>set paste?<CR>
 
 map <leader>t :tabnew<CR>
+
+nnoremap <leader>a :Ack!<space>
+inoremap jj <ESC>
+
+

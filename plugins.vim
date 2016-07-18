@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off       
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -14,12 +14,18 @@ Plugin 'VundleVim/Vundle.vim'
 " Launch vim and run :BundleInstall , everything will be ready for you
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'itchyny/lightline.vim'
+"Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-ragtag'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'Valloric/MatchTagAlways'
-" Plugin 'ervandew/supertab'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'bling/vim-bufferline'
+Plugin 'mileszs/ack.vim'
+Plugin 'austintaylor/vim-indentobject'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " snippets bundle
 Plugin 'tomtom/tlib_vim'
