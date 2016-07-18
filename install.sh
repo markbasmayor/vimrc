@@ -35,3 +35,6 @@ done
 echo "Create symbolic links ..."
 ln -sf $PWD $VIMHOME
 ln -sf $PWD/vimrc $VIMFILE
+
+git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
+vim +PluginInstall +qall
